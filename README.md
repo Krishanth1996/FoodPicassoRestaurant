@@ -1,4 +1,4 @@
-# foodie_restaurant
+# food_picasso__restaurant
 
 A new Flutter application.
 
