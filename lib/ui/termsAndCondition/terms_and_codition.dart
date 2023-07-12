@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:foodie_restaurant/constants.dart';
+import 'package:foodie_restaurant/services/helper.dart';
+import 'package:foodie_restaurant/ui/container/ContainerScreen.dart';
 
 class TermsAndCondition extends StatefulWidget {
-  const TermsAndCondition({Key? key}) : super(key: key);
+
+  TermsAndCondition({Key? key,}) : super(key: key);
 
   @override
   State<TermsAndCondition> createState() => _TermsAndConditionState();
@@ -27,19 +30,10 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(
-            Icons.arrow_back,
-          ),
-        ),
-      ),
+      backgroundColor: isDarkMode(context) ? Color(DARK_COLOR) : const Color(0XFFFDFEFE),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
           child: termsAndCondition != null
               ? HtmlWidget(
                   // the first parameter (`html`) is required

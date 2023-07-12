@@ -160,12 +160,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: isDarkMode(context) ? Color(DARK_CARD_BG_COLOR) : Colors.grey.shade300,
+              color: isDarkMode(context) ? Color(WHITE_CARD_BG_COLOR) : Colors.grey.shade300,
             ),
             alignment: Alignment.center,
             child: Text(
               '$date',
-              style: TextStyle(fontSize: 16, color: isDarkMode(context) ? Colors.white : Colors.black, letterSpacing: 0.5, fontFamily: 'Poppinsm'),
+              style: TextStyle(fontSize: 16, color: isDarkMode(context) ? Colors.white : Colors.white, letterSpacing: 0.5, fontFamily: 'Poppinsm'),
             ),
           )
         ]),
@@ -290,7 +290,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           ),
                           trailing: Text(
                             symbol != ''
-                                ? symbol +
+                                ? symbol +' '+
                                     double.parse((product.extrasPrice!.isNotEmpty && double.parse(product.extrasPrice!) != 0.0)
                                             ? (double.parse(product.extrasPrice!) + double.parse(product.price)).toString()
                                             : product.price)
@@ -379,8 +379,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       style: TextStyle(fontSize: 15, color: isDarkMode(context) ? Colors.white : Color(0XFF333333), letterSpacing: 0.5, fontFamily: 'Poppinsr'),
                     ),
                     Text(
-                      symbol != '' ? symbol + total.toDouble().toStringAsFixed(decimal) : '$symbol${total.toDouble().toStringAsFixed(2)}',
-                      style: TextStyle(fontSize: 18, color: Color(COLOR_PRIMARY), letterSpacing: 0.5, fontFamily: 'Poppinssm'),
+                      symbol != '' ? symbol +' '+ total.toDouble().toStringAsFixed(decimal) : '$symbol${total.toDouble().toStringAsFixed(2)}',
+                      style: TextStyle(fontSize: 18, color: Color(COLOR_GREEN), letterSpacing: 0.5, fontFamily: 'Poppinssm'),
                     ),
                   ])),
               orderModel.notes!.isEmpty
@@ -751,7 +751,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   playSound() async {
-    final path = await rootBundle.load("assets/audio/mixkit-happy-bells-notification-937.mp3");
+    // final path = await rootBundle.load("assets/audio/mixkit-happy-bells-notification-937.mp3");
+    final path = await rootBundle.load("assets/audio/notification.mp3");
 
     audioPlayer.setSourceBytes(path.buffer.asUint8List());
     audioPlayer.setReleaseMode(ReleaseMode.loop);

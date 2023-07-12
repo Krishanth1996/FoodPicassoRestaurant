@@ -523,7 +523,13 @@ class _ContainerScreen extends State<ContainerScreen> {
                 leading: const Icon(Icons.policy),
                 title: const Text('Terms and Condition').tr(),
                 onTap: () async {
-                  push(context, const TermsAndCondition());
+                  Navigator.pop(context);
+                  setState(() {
+                    _drawerSelection = DrawerSelection.termsCondition;
+                    _appBarTitle = 'Terms and Condition'.tr();
+                     _currentWidget = TermsAndCondition();
+                  // push(context, TermsAndCondition());
+                  });
                 },
               ),
             ),
@@ -535,32 +541,94 @@ class _ContainerScreen extends State<ContainerScreen> {
                 leading: const Icon(Icons.privacy_tip),
                 title: const Text('Privacy policy').tr(),
                 onTap: () async {
-                  push(context, const PrivacyPolicyScreen());
+                  Navigator.pop(context);
+                  setState(() {
+                    _drawerSelection = DrawerSelection.privacyPolicy;
+                    _appBarTitle = 'Privacy policy'.tr();
+                     _currentWidget = PrivacyPolicyScreen();
+                  });
+                  // push(context, const PrivacyPolicyScreen());
                 },
               ),
             ),
 
+            // ListTileTheme(
+            //   style: ListTileStyle.drawer,
+            //   selectedColor: Color(COLOR_PRIMARY),
+            //   child: ListTile(
+            //     selected: _drawerSelection == DrawerSelection.Logout,
+            //     leading: Icon(Icons.logout),
+            //     title: Text('Log out').tr(),
+            //     onTap: ()async{
+            //       audioPlayer.stop();
+            //       Navigator.pop(context);
+            //       //user.active = false;
+            //       user!.lastOnlineTimestamp = Timestamp.now();
+            //       await FireStoreUtils.firestore.collection(USERS).doc(user!.userID).update({"fcmToken": ""});
+            //       if (user!.vendorID.isNotEmpty) {
+            //         await FireStoreUtils.firestore.collection(VENDORS).doc(user!.vendorID).update({"fcmToken": ""});
+            //       }
+            //       // await FireStoreUtils.updateCurrentUser(user);
+            //       await auth.FirebaseAuth.instance.signOut();
+            //       await FacebookAuth.instance.logOut();
+            //       MyAppState.currentUser = null;
+            //       pushAndRemoveUntil(context, AuthScreen(), false);
+            //     },
+            //   ),
+            // ),
             ListTileTheme(
               style: ListTileStyle.drawer,
               selectedColor: Color(COLOR_PRIMARY),
               child: ListTile(
                 selected: _drawerSelection == DrawerSelection.Logout,
                 leading: Icon(Icons.logout),
-                title: Text('Log out').tr(),
-                onTap: () async {
-                  audioPlayer.stop();
-                  Navigator.pop(context);
-                  //user.active = false;
-                  user!.lastOnlineTimestamp = Timestamp.now();
-                  await FireStoreUtils.firestore.collection(USERS).doc(user!.userID).update({"fcmToken": ""});
-                  if (user!.vendorID.isNotEmpty) {
-                    await FireStoreUtils.firestore.collection(VENDORS).doc(user!.vendorID).update({"fcmToken": ""});
-                  }
-                  // await FireStoreUtils.updateCurrentUser(user);
-                  await auth.FirebaseAuth.instance.signOut();
-                  await FacebookAuth.instance.logOut();
-                  MyAppState.currentUser = null;
-                  pushAndRemoveUntil(context, AuthScreen(), false);
+                title: Text('Logout').tr(),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Center(child: Text('Logout?',)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                        content: Text('Are you sure you want to log out?'),
+                        actions: [
+                          Column(
+                            children: [
+                              Divider(color: Colors.grey,),
+                              IntrinsicHeight(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(
+                                      child: Text('Cancel',style: TextStyle(color: Color(COLOR_PRIMARY))),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    VerticalDivider(color: Colors.black,),
+                                    TextButton(
+                                      child: Text('Logout'),
+                                      onPressed: () async{
+                                        audioPlayer.stop();
+                                        Navigator.pop(context);
+                                        user!.lastOnlineTimestamp = Timestamp.now();
+                                        await auth.FirebaseAuth.instance.signOut();
+                                        await FacebookAuth.instance.logOut();
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => AuthScreen()),
+                                          ); // Call the logout function
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ); // Show the logout confirmation dialog
                 },
               ),
             ),

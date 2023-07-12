@@ -41,7 +41,7 @@ class _WorkingHoursScreenState extends State<WorkingHoursScreen> {
           WorkingHoursModel(day: 'Wednesday', timeslot: []),
           WorkingHoursModel(day: 'Thursday', timeslot: []),
           WorkingHoursModel(day: 'Friday', timeslot: []),
-          WorkingHoursModel(day: 'Saturday', timeslot: []),
+          WorkingHoursModel(day: 'Satuarday', timeslot: []),
           WorkingHoursModel(day: 'Sunday', timeslot: [])
         ];
       } else {

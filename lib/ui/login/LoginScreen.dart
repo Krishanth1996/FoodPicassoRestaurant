@@ -45,8 +45,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
             ),
 
-            /// email address text field, visible when logging with email
-            /// and password
+            /// email address text field, visible when logging with email and password
             ConstrainedBox(
               constraints: BoxConstraints(minWidth: double.infinity),
               child: Padding(
@@ -64,11 +63,11 @@ class _LoginScreen extends State<LoginScreen> {
                       hintText: 'Email Address'.tr(),
                       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                       errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).errorColor),
+                        borderSide: BorderSide(color: Theme.of(context). colorScheme.error),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).errorColor),
+                        borderSide: BorderSide(color: Theme.of(context). colorScheme.error),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       enabledBorder: OutlineInputBorder(
@@ -79,8 +78,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
             ),
 
-            /// password text field, visible when logging with email and
-            /// password
+            /// password text field, visible when logging with email and password
             ConstrainedBox(
               constraints: BoxConstraints(minWidth: double.infinity),
               child: Padding(
@@ -99,11 +97,11 @@ class _LoginScreen extends State<LoginScreen> {
                       hintText: 'Password'.tr(),
                       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0), borderSide: BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
                       errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).errorColor),
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).errorColor),
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       enabledBorder: OutlineInputBorder(
@@ -114,8 +112,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
             ),
 
-            /// forgot password text, navigates user to ResetPasswordScreen
-            /// and this is only visible when logging with email and password
+            /// forgot password text, navigates user to ResetPasswordScreen and this is only visible when logging with email and password
             Padding(
               padding: const EdgeInsets.only(top: 16, right: 24),
               child: Align(

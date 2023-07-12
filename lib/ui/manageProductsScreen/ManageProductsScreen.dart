@@ -138,7 +138,7 @@ class _ManageProductsScreenState extends State<ManageProductsScreen> {
                             margin: EdgeInsets.only(top: 10),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), image: DecorationImage(image: NetworkImage(productModel.photo), fit: BoxFit.cover))),
                         SizedBox(
-                          width: 20,
+                          width: 18,
                         ),
                         Expanded(
                           child: Padding(
@@ -160,6 +160,16 @@ class _ManageProductsScreenState extends State<ManageProductsScreen> {
                                   style: TextStyle(fontSize: 15, fontFamily: "Poppins", color: isDarkMode(context) ? Colors.white : Color(0xff5E5C5C)),
                                 ),
                                 SizedBox(height: 8),
+                                Text(
+                                  symbol != ''
+                                  ? symbol + double.parse(productModel.price.toString()).toStringAsFixed(decimal)
+                                  : '$symbol${double.parse(productModel.price.toString()).toDouble().toStringAsFixed(decimal)}',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    decoration: productModel.disPrice.toString() != "0" ? TextDecoration.lineThrough : null,
+                                    fontFamily: "Poppinssm",
+                                    color: productModel.disPrice.toString() == "0" ? Color(COLOR_PRIMARY) : Colors.grey),
+                                ),
                                 Row(
                                   children: [
                                     Expanded(
@@ -180,21 +190,8 @@ class _ManageProductsScreenState extends State<ManageProductsScreen> {
                                                     color: Color(COLOR_PRIMARY),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width: 7,
-                                                ),
                                               ],
                                             ),
-                                          ),
-                                          Text(
-                                            symbol != ''
-                                                ? symbol + double.parse(productModel.price.toString()).toStringAsFixed(decimal)
-                                                : '$symbol${double.parse(productModel.price.toString()).toDouble().toStringAsFixed(decimal)}',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                decoration: productModel.disPrice.toString() != "0" ? TextDecoration.lineThrough : null,
-                                                fontFamily: "Poppinssm",
-                                                color: productModel.disPrice.toString() == "0" ? Color(COLOR_PRIMARY) : Colors.grey),
                                           ),
                                         ],
                                       ),
